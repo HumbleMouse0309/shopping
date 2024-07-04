@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/login.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="login-wrapper">
+        <h2>Login</h2>
+        
+        <form method="post" action="" id="login-form">
+            <input type="hidden" name="page" th:value="${page}">
+            <input type="text" id="user-id" name="userId" placeholder="아이디">    
+            <input type="password" name="userPassword" placeholder="비밀번호">
+            <input type="submit" value="로그인">
+        </form>
+        <form method="get" action="/user/insert" id="login-form">
+            <input type="submit" style="background-color: red;" value="회원가입">
+        </form>
+    </div>
+</body>
+</html>

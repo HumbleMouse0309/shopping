@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상품등록</title>
+</head>
+
+<body>
+    <form action="/product/insert/action" method="post" enctype="multipart/form-data">
+        분류선택
+        <select name="productCategory">
+            <block th:each="category : ${categorySet}">
+                <option th:value="${category.codeSeq}">[[${category.codeName}]]</option>
+            </block>
+        </select><br>
+        상품명 <input type="text" name="productName"><br>
+        상품키워드 <input type="text" name="productKeyword"><br>
+        상품이미지 <input type="file" name="productImage"><br>
+         <button type="submit" id="btn-red">등록</button>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p th:text="|${session.userName} ${session.userGrade} |"></p>
+    <block th:if="${session.userGrade} == '1'">
+        <a href="/product">상품등록</a><a href="/user/sellerpage">MyPage</a>
+    </block>
+    <block th:if="${session.userGrade} == '4'">
+        <a href="/shop">쇼핑하기</a><a href="/user/mypage">MyPage</a>
+    </block>
+    <block th:if="${session.userGrade} == 14">
+        <a href="/manage">관리자페이지</a>
+    </block>
+
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/manage.css">
+    <script>
+        function onBuy(seq,amount,productId) {
+            location.href = "/order/buy/update?productId="+productId+"&amount="+amount+"&seq="+seq;
+        }
+        function onCancel(seq) {
+            location.href = "/order/basket/delete?seq="+seq;
+        }
+        function continueShopping(){
+            location.href="/shop";
+        }
+        function onBuy(seq){
+            const link = "/order/search?seq="+seq;
+            const pop = window.open(link,"배송상태","width=200px, height=200px");
+        }
+    </script>
+    <title>Document</title>
+</head>
+
+<body>
+    <h4>장바구니</h4>
+    <div class="divTable minimalistBlack">
+        <div class="divTableHeading">
+            <div class="divTableRow">
+                <div class="divTableHead">구입일자</div>
+                <div class="divTableHead">상품명</div>
+                <div class="divTableHead">상품가격</div>
+                <div class="divTableHead">주문수량</div>
+                <div class="divTableHead">총결제금액</div>
+                <div class="divTableHead">결제</div>
+                <div class="divTableHead">주문취소</div>
+            </div>
+        </div>
+        <div th:each="basket : ${basketList}" class="divTableBody">
+            <div class="divTableRow">
+                <div class="divTableCell" th:text="${basket.regDt}"></div>
+                <div class="divTableCell" th:text="${basket.productName}"></div>
+                <div class="divTableCell" th:text="${basket.productPrice}"></div>
+                <div class="divTableCell" th:text="${basket.amount}"></div>
+                <div class="divTableCell" th:text="${basket.totalPrice}"></div>
+                <div class="divTableCell">
+                    <button type="button" 
+                    th:onclick="onBuy([[${basket.seq}]],[[${basket.amount}]],[[${basket.productId}]])">
+                        결제
+                    </button>
+                </div>
+                <div class="divTableCell">
+                    <button type="button" th:onclick="onCancel([[${basket.seq}]])">
+                        주문취소
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <h4>결제완료</h4>
+    <div class="divTable minimalistBlack">
+        <div class="divTableHeading">
+            <div class="divTableRow">
+                <div class="divTableHead">구입일자</div>
+                <div class="divTableHead">상품명</div>
+                <div class="divTableHead">상품가격</div>
+                <div class="divTableHead">주문수량</div>
+                <div class="divTableHead">총결제금액</div>
+                <div class="divTableHead">배송조회</div>
+            </div>
+        </div>
+        <div th:each="buy : ${buyList}" class="divTableBody">
+            <div class="divTableRow">
+                <div class="divTableCell" th:text="${buy.regDt}"></div>
+                <div class="divTableCell" th:text="${buy.productName}"></div>
+                <div class="divTableCell" th:text="${buy.productPrice}"></div>
+                <div class="divTableCell" th:text="${buy.amount}"></div>
+                <div class="divTableCell" th:text="${buy.totalPrice}"></div>
+                <div class="divTableCell">
+                    <button type="button" th:onclick="onBuy([[${buy.seq}]])">
+                        배송조회
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="button" onclick="continueShopping()">계속쇼핑</button>
+</body>
+
+</html>

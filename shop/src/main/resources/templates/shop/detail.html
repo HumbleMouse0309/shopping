@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/product.css">
+    <script>
+        function productOrder(){
+            const id = document.getElementById("session-id").value;
+            
+            if(id==""){
+                if(window.confirm("로그인하시겠습니까?")){
+                    location.href="/shop/login";
+                }else{
+                    location.href="/shop";
+                }
+            }
+            const orderAmount = document.getElementById("order-amount").value;
+            const salesPrice = document.getElementById("order-price").value;
+        
+            const totalPrice = orderAmount*salesPrice;
+            const orderPrice = document.createElement("input");
+            orderPrice.setAttribute("name","totalPrice");
+            orderPrice.setAttribute("value",totalPrice);
+            orderPrice.setAttribute("type","hidden");
+            const frm = document.getElementById("order-form");
+            frm.appendChild(orderPrice);
+            const message="결재금액은 "+totalPrice+"입니다 결재하시겠습니까?";
+            window.confirm(message)
+            frm.submit();
+        }
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    <input type="hidden" id="sales-amount" th:value="${productDetail.productAmount}">
+    <input type="hidden" id="session-id" th:value="${session.userEmail}">
+    <a href="#" th:text="${productDetail.productCategoryName}"></a>
+    <div th:text="${productDetail.productName}"></div>
+    <hr>
+    <div>
+        <img th:src="${productDetail.productImage}" id="product-image">
+    </div>
+    <div th:text="${productDetail.productDesc}"></div>
+    <span th:text="|판매가격 : ${productDetail.productPrice}|" style="font-size:medium;color:blue"></span>
+    <form action="/order/basket" id="order-form">
+        <input type="hidden" name="productId" th:value="${productDetail.productId}">
+        <input type="hidden" name="productPrice" th:value="${productDetail.productPrice}" id="order-price">
+        주문수량<select name="amount" id="order-amount" style="width:80px;">
+            <block th:each="amount : ${#numbers.sequence(1,productDetail.productAmount)}">
+                <option th:value="${amount}" th:text="${amount}"></option>
+            </block>
+        </select>
+    </form>
+    <button type="button" onclick="productOrder()">주문</button>
+</body>
+
+</html>

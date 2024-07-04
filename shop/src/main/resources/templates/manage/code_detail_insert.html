@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/manage.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상세코드입력</title>
+</head>
+<body>
+    <form action="/manage/code/detail/insert/action">
+        <input type="hidden" name="category" th:value="${category}">
+        <select name="state">
+            <option value="0">미사용</option>
+            <option value="1">사용</option>
+        </select>
+        코드명 : <input type="text" name="codeName"><br>
+        코드상세설명<br>
+        <input type="text" name="codeDesc" style="width:300px">
+        <br>
+        <button type="submit" id="btn-green">코드등록</button>
+    </form>
+</body>
+</html>

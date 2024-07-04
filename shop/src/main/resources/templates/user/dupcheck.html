@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        function idConfirm(){
+            opener.document.getElementById("checkid").value = document.getElementById("idcheck").value;
+            window.close();
+        }
+    </script>
+    <title>중복체크</title>
+</head>
+<body>
+    <h3 th:if="${fg} == 1" th:text="|${userId}는 사용불가능한 ID 입니다|"></h3>
+    <h3 th:unless="${fg} == 1" th:text="|${userId}는 사용가능한 ID 입니다|"></h3>
+    <block th:if="${fg} == 0">
+        <input id="idcheck" type="hidden" th:value="${userId}">
+    </block>
+    <block th:unless="${fg} == 0">
+        <input id="idcheck" type="hidden" value="">
+    </block>
+    <button type="submit" onclick="idConfirm()">확인</button>
+</body>
+</html>

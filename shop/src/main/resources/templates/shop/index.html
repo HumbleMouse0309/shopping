@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/product.css">
+    <title>상품리스트</title>
+</head>
+<body>
+    <div th:each="product : ${productList}" id="product-list">
+        <div>
+            <img th:src="${product.productImage}" id="product-image-list">
+        </div>
+        <div>
+            <span th:text="|등록일자 : ${product.regDt}|" style="font-size:10px"></span><br>
+            <a th:href="@{/shop/detail(productId=${product.productId})}" 
+            th:text="${product.productName}"></a>
+            <span th:text="|판매가격 : ${product.productPrice}|" style="font-size:10px"></span><br>
+        </div>
+    </div>
+</body>
+</html>

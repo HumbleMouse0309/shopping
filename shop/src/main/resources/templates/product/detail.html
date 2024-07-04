@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/product.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <h5 th:text="${productSet.productName}"></h5>
+    <div style="display:inline">
+        <div>
+            <img th:src="${productSet.productImage}" id="product-image">
+        </div>
+        <div>
+            <span th:text="|판매가격 ${productDetailSet.productPrice}|"></span><br>
+            <span th:text="|재고수량 ${productDetailSet.productAmount}|"></span><br>
+            <span th:text="|상품키워드 ${productSet.productKeyword}|"></span><br>
+        </div>
+    </div>
+    <hr>
+    <p th:text="${productDetailSet.productDesc}"></p>
+</body>
+
+</html>

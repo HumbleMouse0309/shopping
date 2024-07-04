@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        function orderChange(){
+            order = document.getElementById("order-id").value;
+            location.href="/manage/product?order="+order;
+        }
+    </script>
+    <link rel="stylesheet" href="/css/manage.css">
+    <title>Document</title>
+</head>
+<body>
+    <select name="order" onchange="orderChange()" id="order-id">
+        <option value="1">제품분류</option>
+        <option value="2">등록일자</option>
+        <option value="3">판매자</option>
+    </select>
+    <hr>
+    <div class="divTable minimalistBlack">
+        <div class="divTableHeading">
+            <div class="divTableRow">
+                <div class="divTableHead">상품분류</div>
+                <div class="divTableHead">판매자아이디</div>
+                <div class="divTableHead">상품아이디</div>
+                <div class="divTableHead">상품명</div>
+                <div class="divTableHead">판매현황</div>
+                <div class="divTableHead">등록일시</div>
+                
+            </div>
+        </div>
+        <div th:each="product : ${productList}" class="divTableBody">
+            <div class="divTableRow">
+                <div class="divTableCell" th:text="${product.category}"></div>
+                <div class="divTableCell" th:text="${product.sellerId}"></div>
+                <div class="divTableCell" th:text="${product.productId}"></div>
+                <div class="divTableCell" th:text="${product.productName}"></div>
+                <div class="divTableCell" th:text="${product.state}"></div>
+                <div class="divTableCell" th:text="${product.regDt}"></div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

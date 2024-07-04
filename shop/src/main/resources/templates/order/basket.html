@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        function submitBasket() {
+            const frm = document.getElementById("submit-basket");
+            frm.submit();
+        }
+        function submitBuy() {
+            const frm = document.getElementById("submit-buy");
+            frm.submit();
+        }
+    </script>
+    <title>Document</title>
+</head>
+
+<body>
+    <p th:text="|상품단가 ${productPrice}|"></p>
+    <p th:text="|주문수량 ${amount}|"></p>
+    <p th:text="|결제금액 ${totalPrice}|"></p>
+    <form id="submit-basket" action="/order/basket/insert">
+        <input type="hidden" name="userId" th:value="${session.userEmail}">
+        <input type="hidden" name="productId" th:value="${productId}">
+        <input type="hidden" name="amount" th:value="${amount}">
+    </form>
+    <form id="submit-buy" action="/order/buy/insert">
+        <input type="hidden" name="userId" th:value="${session.userEmail}">
+        <input type="hidden" name="productId" th:value="${productId}">
+        <input type="hidden" name="amount" th:value="${amount}">
+    </form>
+    <button type="button" onclick="submitBasket()">장바구니로</button>
+    <button type="button" onclick="submitBuy()">결제하기</button>
+
+</body>
+
+</html>

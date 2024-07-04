@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    분류선택
+    <select name="category">
+        <block th:each="category : ${categorySet}">
+            <option th:value="${category.seq}" th:text="${category.codeName}"></option>
+        </block>
+    </select>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        function codeManage(){
+            location.href="/manage/code";
+        }
+        function userManage(){
+            location.href="/manage/user";
+        }
+        function productManage(){
+            location.href="/manage/product";
+        }
+    </script>
+    <link rel="stylesheet" href="/css/manage.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자페이지</title>
+</head>
+<body>
+    <button type="button" id="btn-green" onclick="codeManage()">코드관리</button>
+    <button type="button" id="btn-green" onclick="userManage()">회원관리</button>
+    <button type="button" id="btn-green" onclick="productManage()">상품관리</button>
+</body>
+</html>

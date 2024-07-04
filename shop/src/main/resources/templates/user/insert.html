@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/user.css">
+    <script>
+        function dupIdCheck(){
+            const userId = document.getElementById("checkid").value; 
+            const link = "/user/dupcheck?userId="+userId;
+            window.open(link,"중복체크","width=500px,height=500px");
+        }
+    </script>
+    <title>회원등록</title>
+</head>
+<body>
+     <form action="/user/insert/action" method="get">
+        <table>
+        <tr>
+            <td><h2>회원가입</h2></td>
+        </tr>
+        <tr><td><input type="radio" name="userType" value="4">판매자
+                       <input type="radio" name="userType" value="1" checked >일반회원   </td></tr>
+        <tr><td><input type="text" class="text" id="checkid" name="userId" placeholder="아이디">
+            <button type="button" onclick="dupIdCheck()">중복체크</button>
+        </td></tr>
+        <tr><td><input type="password" class="text" name="userPassword" placeholder="비밀번호"></td></tr>
+        <tr><td><input type="text" class="text" name="userName" placeholder="이름"></td></tr>
+        <tr><td><input type="text" class="text" name="userEmail" placeholder="이메일"></td></tr>
+        <tr><td>출생년도<select name="year">
+            <block th:each="year : ${#numbers.sequence(1940,2024)}">
+               <option th:value="${year}">[[${year}]]</option>
+            </block>
+        </select></td></tr>
+        <tr><td>남자 <input type="radio" checked="true" name="gender" value="1"> 여자<input type="radio" name="gender" value="2"> </td></tr>
+        <tr><td><input type="submit" value="가입하기" class="btn"></td></tr>
+        </table>
+    </form>
+</body>
+</html>

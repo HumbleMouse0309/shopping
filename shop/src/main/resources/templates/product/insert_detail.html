@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상품세부정보등록</title>
+</head>
+<body>
+    <form action="/product/insert/detail/action">
+        <input type="hidden" name="productId" th:value="${productId}">
+        판매가격 <input type="text" name="productPrice"><br>
+        수량 <input type="text" name="productAmount"><br>
+        상세설명 <input type="text" name="productDesc"><br>
+        <button type="submit">등록</button>
+    </form>
+</body>
+</html>

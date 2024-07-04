@@ -1,0 +1,15 @@
+#product-image-list{
+    width:250px;
+    height:250px;
+}
+#product-image{
+    width:500px;
+    height:500px;
+}
+#product-list{
+    display:inline-flex;
+    border-style:dotted;
+    margin:5px;
+    padding:5px;
+    background-color: aquamarine;
+}

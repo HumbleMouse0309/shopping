@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/manage.css">
+    <script>
+        function categoryAppend() {
+            const link = "/manage/code/insert";
+            location.href=link;
+        }
+        function codeAppend(){
+            const category = document.getElementById("category").value;
+            const link = "/manage/code/detail/insert?category="+category;
+            location.href=link;
+        }
+        function stateChange(state,seq){
+            if(state=="1"){
+                state = "0";
+            }else{
+                state = "1";
+            }
+            const link = "/manage/code/detail/state/change?seq="+seq+"&state="+state;
+            location.href=link;
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>코드관리</title>
+</head>
+
+<body>
+    <button type="button" id="btn-black" onclick="categoryAppend()">분류추가</button>
+    <select name="code" id="category">
+        <option>---------</option>
+        <block th:each="code : ${codeSet}">
+            <option th:value="${code.seq}" th:text="${code.codeName}"></option>
+        </block>
+    </select>
+    <button type="button" id="btn-red" onclick="codeAppend()">코드추가</button>
+    <hr>
+    <div class="divTable minimalistBlack">
+        <div class="divTableHeading">
+            <div class="divTableRow">
+                <div class="divTableHead">코드분류</div>
+                <div class="divTableHead">코드명</div>
+                <div class="divTableHead">코드설명</div>
+                <div class="divTableHead">코드사용여부</div>
+            </div>
+        </div>
+        <div th:each="codeDetail : ${codeDetailSet}" class="divTableBody">
+            <div class="divTableRow">
+                <div class="divTableCell" th:text="${codeDetail.category}"></div>
+                <div class="divTableCell" th:text="${codeDetail.codeName}"></div>
+                <div class="divTableCell" th:text="${codeDetail.codeDesc}"></div>
+                <div class="divTableCell">
+                    <button type="button" id="btn-black" th:if=" '0' == ${codeDetail.state}" 
+                    th:onclick="stateChange([[${codeDetail.state}]],[[${codeDetail.seq}]])">
+                        미사용</button>
+                    <button type="button" id="btn-black" th:unless=" '0' == ${codeDetail.state}" 
+                    th:onclick="stateChange([[${codeDetail.state}]],[[${codeDetail.seq}]])">
+                        사용</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

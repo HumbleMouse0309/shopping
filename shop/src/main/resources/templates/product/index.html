@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/manage.css">
+    <script>
+        function insertProduct() {
+            location.href = "/product/insert";
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button type="button" id="btn-green" onclick="insertProduct()">상품등록</button>
+    <hr>
+    <div class="divTable minimalistBlack">
+        <div class="divTableHeading">
+            <div class="divTableRow">
+                <div class="divTableHead">분류</div>
+                <div class="divTableHead">상품명</div>
+                <div class="divTableHead">키워드</div>
+                <div class="divTableHead">상품이미지</div>
+                <div class="divTableHead">판매상태</div>
+                <div class="divTableHead">등록일시</div>
+            </div>
+        </div>
+        <div th:each="product : ${productSet}" class="divTableBody">
+            <div class="divTableRow">
+                <div class="divTableCell" th:text="${product.productCaterogyName}"></div>
+                <div class="divTableCell">
+                    <block th:if="${product.productState == '15'}">
+                        <a th:href="@{/product/insert/detail(productId=${product.productId})}"
+                            th:text="${product.productName}"></a>
+                    </block>
+                    <block th:unless="${product.productState == '15'}">
+                        <a th:href="@{/product/update/detail(productId=${product.productId})}"
+                           th:text="${product.productName}"></a>
+                    </block>
+                </div>
+                <div class="divTableCell" th:text="${product.productKeyword}"></div>
+                <div class="divTableCell">
+                    <img th:src="${product.productImage}" id="thumb">
+                </div>
+                <div class="divTableCell" th:text="${product.productStateName}"></div>
+                <div class="divTableCell" th:text="${product.regDt}"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

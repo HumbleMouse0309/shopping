@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/manage.css">
+    <script>
+        function stateChange(state,seq){
+            if(state=="1"){
+                state = "0";
+            }else{
+                state = "1";
+            }
+            const link = "/manage/code/detail/state/change?seq="+seq+"&state="+state;
+            location.href=link;
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원관리</title>
+</head>
+
+<body>
+    <div class="divTable minimalistBlack">
+        <div class="divTableHeading">
+            <div class="divTableRow">
+                <div class="divTableHead">회원구분</div>
+                <div class="divTableHead">아이디</div>
+                <div class="divTableHead">회원명</div>
+                <div class="divTableHead">가입일자</div>
+                <div class="divTableHead">패스워드</div>
+                <div class="divTableHead">등급코드</div>
+            </div>
+        </div>
+        <div th:each="user : ${userSet}" class="divTableBody">
+            <div class="divTableRow">
+                <div class="divTableCell" th:text="${user.codeName}"></div>
+                <div class="divTableCell" th:text="${user.userId}"></div>
+                <div class="divTableCell" th:text="${user.userName}"></div>
+                <div class="divTableCell" th:text="${user.regDt}"></div>
+                <div class="divTableCell" th:text="${user.userPassword}"></div>
+                <div class="divTableCell" th:text="${user.userGrade}"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

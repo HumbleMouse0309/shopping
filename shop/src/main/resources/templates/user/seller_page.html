@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/manage.css">
+    <script>
+        function productSubmit(seq){
+            location.href="/order/delivery?seq="+seq;
+        }
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="divTable minimalistBlack">
+        <div class="divTableHeading">
+            <div class="divTableRow">
+                <div class="divTableHead">등록일</div>
+                <div class="divTableHead">상품분류</div>
+                <div class="divTableHead">상품명</div>
+                <div class="divTableHead">재고수량</div>
+                <div class="divTableHead">판매량</div>
+                <div class="divTableHead">전체판매금액</div>
+                <div class="divTableHead">판매가격</div>
+            </div>
+        </div>
+        <div th:each="product : ${productStateList}" class="divTableBody">
+            <div class="divTableRow">
+                <div class="divTableCell" th:text="${product.regDt}"></div>
+                <div class="divTableCell" th:text="${product.productCategory}"></div>
+                <div class="divTableCell" th:text="${product.productName}"></div>
+                <div class="divTableCell" th:text="${product.productAmount}"></div>
+                <div class="divTableCell" th:text="${product.totalSalesAmount}"></div>
+                <div class="divTableCell" th:text="${product.totalSalesPrice}"></div>
+                <div class="divTableCell" th:text="${product.productPrice}"></div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="divTable minimalistBlack">
+        <div class="divTableHeading">
+            <div class="divTableRow">
+                <div class="divTableHead">결제일</div>
+                <div class="divTableHead">상품명</div>
+                <div class="divTableHead">주문수량</div>
+                <div class="divTableHead">배송상태</div>
+                <div class="divTableHead">발송완료</div>
+                <div class="divTableHead">배송주소</div>
+            </div>
+        </div>
+        <div th:each="delivery : ${productDeliveryList}" class="divTableBody">
+            <div class="divTableRow">
+                <div class="divTableCell" th:text="${delivery.regDt}"></div>
+                <div class="divTableCell" th:text="${delivery.productName}"></div>
+                <div class="divTableCell" th:text="${delivery.amount}"></div>
+                <div class="divTableCell" th:text="${delivery.deliveryState}"></div>
+                <div class="divTableCell" >
+                    <button type="button" th:onclick="productSubmit([[${delivery.seq}]])">발송</button>
+                </div>
+                <div class="divTableCell" th:text="|${delivery.address1} ${delivery.address1}|"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
